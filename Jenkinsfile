@@ -33,13 +33,12 @@ pipeline {
                   bat 'docker login -u nandhini596 -p Nandhu@29'
                 }
             }
-        stage('push Docker Image to Docker Hub') {
-            steps {
-                echo "push Docker Image to Docker Hub"
-                bat "docker tag seleniumdemoapp:v1 nandhini596/sample:seleniumtestimage"               
-                    
+        stage('push Docker image to docker hub'){
+            steps{
+                echo "push Docker image to docker hub"
+                bat "docker tag seleniumdemoapp:v1 nandhini596/sample:seleniumtestimage"
+
                 bat "docker push nandhini596/sample:seleniumtestimage"
-                
             }
         }
         stage('Deploy to Kubernetes') { 
@@ -58,4 +57,5 @@ pipeline {
             echo 'Pipeline failed. Please check the logs.'
         }
     }
+
 }
